@@ -35,7 +35,7 @@ jobs:
     steps:
     - name: install packages
       run: apk --no-cache add build-base perl linux-headers ${{ matrix.cc }}
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: config
       run: |
         ./config --strict-warnings --banner=Configured no-shared enable-fips \
@@ -84,7 +84,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ${{ matrix.zoo.image }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: install packages
       run: ${{ matrix.zoo.install }}
     - name: config
@@ -107,7 +107,7 @@ jobs:
         os: [macos-13, macos-14, macos-15]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: checkout fuzz/corpora submodule
       run: git submodule update --init --depth 1 fuzz/corpora
     - name: config
@@ -130,7 +130,7 @@ jobs:
         os: [windows-2022, windows-2025]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: checkout fuzz/corpora submodule
       run: git submodule update --init --depth 1 fuzz/corpora
     - uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 #v1.13.0
@@ -168,7 +168,7 @@ jobs:
     runs-on: linux-arm64
     if: github.repository == 'openssl/openssl'
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: config
       run: ./config --strict-warnings enable-fips enable-ec_nistp_64_gcc_128 enable-md2 enable-rc5 enable-ssl3 enable-ssl3-method enable-trace
     - name: config dump
@@ -184,7 +184,7 @@ jobs:
     runs-on: linux-ppc64le
     if: github.repository == 'openssl/openssl'
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: config
       run: ./config --strict-warnings enable-fips enable-ec_nistp_64_gcc_128 enable-md2 enable-rc5 enable-ssl3 enable-ssl3-method enable-trace
     - name: config dump
@@ -202,7 +202,7 @@ jobs:
     runs-on: linux-s390x
     if: github.repository == 'openssl/openssl'
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: config
       run: ./config --strict-warnings enable-fips enable-md2 enable-rc5 enable-ssl3 enable-ssl3-method enable-trace
     - name: config dump
@@ -220,7 +220,7 @@ jobs:
     runs-on: linux-riscv64
     if: github.repository == 'openssl/openssl'
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: config
       run: ./config enable-fips enable-ec_nistp_64_gcc_128 enable-md2 enable-rc5 enable-ssl3 enable-ssl3-method enable-trace
     - name: config dump
@@ -237,7 +237,7 @@ jobs:
   freebsd-x86_64:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: config
       uses: cross-platform-actions/action@fe0167d8082ac584754ef3ffb567fded22642c7d #v0.27.0
       with:
